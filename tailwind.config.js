@@ -8,12 +8,12 @@ export default {
     extend: {
       screens: {
         touch: { raw: "(pointer: coarse)" },
-        mouse: { raw: "(pointer: fine)" }
+        mouse: { raw: "(pointer: fine)" },
       },
       fontFamily: {
-        merriweather: "Merriweather"
-      }
-    }
+        merriweather: "Merriweather",
+      },
+    },
   },
-  plugins: [require("@tailwindcss/typography")]
+  plugins: [require("@tailwindcss/typography")],
 }
