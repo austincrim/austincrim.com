@@ -28,16 +28,16 @@
 }
 
 .astro-code {
-  border: 1px solid theme("colors.slate.200");
+  border: 1px solid var(--color-slate-200);
 }
 
 @media (prefers-color-scheme: dark) {
   html {
-    scrollbar-color: theme("colors.slate.500") theme("colors.slate.800");
+    scrollbar-color: var(--color-slate-500) var(--color-slate-800);
   }
 
   .astro-code {
-    border: 1px solid theme("colors.slate.700") !important;
+    border: 1px solid var(--color-slate-700) !important;
   }
   .astro-code,
   .astro-code span {

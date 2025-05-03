@@ -1,6 +1,5 @@
-/* @view-transition {
-  navigation: auto;
-} */
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 h1,
 h2,
@@ -37,16 +36,16 @@ a[href]:focus-visible {
   --yummy: linear-gradient(
     140deg,
     whitesmoke,
-    theme("colors.blue.200") 20%,
+    var(--color-blue-200) 20%,
     whitesmoke 50%,
-    theme("colors.indigo.200"),
+    var(--color-indigo-200),
     whitesmoke
   );
 }
 
 .hero-gradient {
-  --tw-gradient-stops: theme("colors.blue.700"), theme("colors.indigo.300"),
-    theme("colors.blue.400");
+  --tw-gradient-stops: var(--color-blue-700), var(--color-indigo-300),
+    var(--color-blue-400);
   background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
 
@@ -59,9 +58,9 @@ a[href]:focus-visible {
   :root {
     --yummy: linear-gradient(
       140deg,
-      theme("colors.slate.700"),
-      theme("colors.slate.500") 20%,
-      theme("colors.slate.700") 50%
+      var(--color-slate-700),
+      var(--color-slate-500) 20%,
+      var(--color-slate-700) 50%
     );
   }
   .link {

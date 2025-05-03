@@ -52,14 +52,14 @@ const { project } = Astro.props
     border-color: currentColor;
   }
   [data-tag="oss"] {
-    background: theme("colors.sky.100");
-    color: theme("colors.sky.800");
+    background: var(--color-sky-100);
+    color: var(--color-sky-800);
   }
   [data-tag="podcast"],
   [data-tag="guest post"],
   [data-tag="talk"],
   [data-tag="video"] {
-    background: theme("colors.fuchsia.100");
-    color: theme("colors.fuchsia.800");
+    background: var(--color-fuchsia-100);
+    color: var(--color-fuchsia-800);
   }
 </style>

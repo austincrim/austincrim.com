@@ -28,6 +28,8 @@
   <p class="text-xl leading-loose max-w-[80ch] relative p-6 backdrop-blur-xl">
     I started out as a 19-year old COBOL programmer and now I work on the web.
     Chat with me about <a class="link" href="https://svelte.dev">Svelte</a>,
-    guitars, and making the web better.
+    <a class="link" href="https://open.spotify.com/show/0vYvGQxtd4h1ynYAtenRFm"
+      >my podcast</a
+    >, or making the web better.
   </p>
 </div>
