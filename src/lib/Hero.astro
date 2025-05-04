@@ -4,7 +4,7 @@ import { RightArrow } from "./Icons.js"
 ---
 
 <div
-  class="flex flex-col justify-between sm:items-end sm:flex-row mt-12 mb-20 space-y-10"
+  class="flex flex-col justify-between sm:items-end sm:flex-row mt-12 mb-28 space-y-6 sm:space-y-0"
 >
   <div class="flex flex-col text-balance gap-4">
     <h1 class="text-5xl leading-tight">
@@ -17,14 +17,12 @@ import { RightArrow } from "./Icons.js"
       I build things for the web.
     </h2>
   </div>
-  <div class="flex flex-col items-start justify-center space-y-4 sm:items-end">
-    <a class="link group" href="mailto:aust.crim@gmail.com">
-      <span>Say Hi</span>
-      <span
-        class="inline-block align-middle transition-transform transform group-hover:translate-x-1"
-        set:html={RightArrow()}
-      />
-    </a>
-  </div>
+  <a class="link group" href="mailto:aust.crim@gmail.com">
+    <span>Say Hi</span>
+    <span
+      class="inline-block align-middle transition-transform transform group-hover:translate-x-1"
+      set:html={RightArrow()}
+    />
+  </a>
 </div>
 <Blobs client:load />

@@ -14,7 +14,7 @@ let posts = (await getCollection("posts", (e) => !e.data.draft))
   .slice(0, 3)
 let projects = (await getCollection("projects"))
   .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 3)
+  .slice(0, 4)
 ---
 
 <Layout title="Austin Crim | building for the web" route="home">

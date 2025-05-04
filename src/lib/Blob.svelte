@@ -62,7 +62,7 @@
   bind:this={blob}
   style="transform: translate(calc(var(--left) * 1px), calc(var(--top) * 1px))"
   class="w-16 h-16 absolute rounded-full p-2 {color}"
-/>
+></div>
 
 <style>
   div {
