@@ -79,31 +79,3 @@ let { frontmatter, headings } = Astro.props
     </div>
   </article>
 </Layout>
-
-<!-- <script>
-  let headingEls = document.querySelectorAll('h2[id]')
-  let tocEls = Array.from(document.querySelectorAll('.heading-toc'))
-  let activeHeading
-
-  let observer = new IntersectionObserver(
-    (entries) => {
-      for (let entry of entries) {
-        if (entry.isIntersecting) {
-          if (activeHeading) {
-            activeHeading.classList.remove('font-semibold', 'text-gray-900')
-          }
-          activeHeading = tocEls.find(
-            (toc) => toc.getAttribute('href') === `#${entry.target.id}`
-          )
-
-          activeHeading.classList.add('font-semibold', 'text-gray-900')
-        }
-      }
-    },
-    {
-      threshold: 1,
-      rootMargin: `0% 0% -50% 0%`
-    }
-  )
-  headingEls.forEach((el) => observer.observe(el))
-</script> -->

@@ -1,15 +1,19 @@
 ---
 title: "Every way to store data in the browser"
 lede: "The browser can store data now. Like a lot of data."
-datePublished: 2024-08-01
-draft: true
+datePublished: 2025-05-06
+draft: false
 ---
 
 # Why
 
 I think you should store data in your user's browser. Or at least consider it.
 
-Many web apps today introduce latency, errors, and slow interactions in order to pass tiny blobs of JSON back and forth from a server. These packets are usually in the 10s kilobytes. TODO insert example. I want you to consider whether that architecture is always the right choice for your entire app. While reading this (and you will read to the end, right?), think about the experiences you could build if the relevant data was always at your fingertips.
+Many web apps today introduce latency, errors, and slow interactions in order to pass tiny blobs of JSON back and forth from a server. These packets are usually in the 10s of kilobytes.
+
+The browser can store **gigabytes** of data.
+
+Does that architecture make sense for all of your app's data? While reading this, think about the experiences you could build if your app's data was already in your browser.
 
 You might be thinking, "this just sounds like another caching layer", and you would be right! Good job. It might sound difficult to manage, but come on, how hard can cache invalidation be?
 
@@ -17,7 +21,7 @@ You might be thinking, "this just sounds like another caching layer", and you wo
 
 The data you store in a browser is ultimately in your users' hands and, like anything you ship to a user, there's a chance they are going to screw it up. At any time, they can hit the "Clear browser storage" button which will wipe out most of the storage mechanisms I mention below.
 
-This means that browser storage should usually _enhance_ the user experience rather than create it. Storing data in the browser should be viewed as another kind of progressive enhancement.
+This means that browser storage should usually _enhance_ the user experience rather than create it. Storing data in the browser can be viewed as a kind of progressive enhancement.
 
 You _can_ tell the browser your data is important by opting in to [**persistent mode**](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/persist), but this only prevents the browser from automatically evicting your data if the [storage quota](#browser-storage-quotas) is getting low. The user can still remove data at any time.
 
@@ -73,8 +77,7 @@ let preferences = JSON.parse(localStorage.getItem("prefs"))
 
 # sessionStorage
 
-- Mostly the same as `localStorage` but
-- Deleted when tab/window is closed
+- Mostly the same as `localStorage` but deleted when tab/window is closed
 - Deleted with "Clear browser storage" button
 - Synchronous API
 - ~5mb limit
@@ -87,15 +90,15 @@ sessionStorage.setItem("saved-message", text.value)
 
 # IndexedDB
 
-- More database-like storage
+- Database-like storage
 - Supports indexes, transactions, cursors
 - Very cumbersome API
 - Adheres to [browser storage quotas](#browser-storage-quotas)
 - Deleted with "Clear browser storage" button
 - Async API
-- Example with raw API would make this post too long, use a wrapper
+- An example with the raw API would make this post too long, use a wrapper
 - [`idb`](https://github.com/jakearchibald/idb) is heavily recommended for general purpose use
-- [`absurd-sql`](https://github.com/jlongster/absurd-sql) can run Sqlite backed by IndexedDB
+- [`absurd-sql`](https://github.com/jlongster/absurd-sql) can run sqlite backed by IndexedDB
 - [MDN](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
 
 ```js
@@ -103,7 +106,7 @@ import { openDB } from "idb"
 let db = await openDB("my-app", 1, {
   upgrade(db) {
     db.createObjectStore("notes")
-  }
+  },
 })
 let myNotes = await db.getAll("notes")
 ```
@@ -115,7 +118,7 @@ let myNotes = await db.getAll("notes")
 - Does not respect `Response` cache headers
 - Will not cache cookies
 - Adheres to [browser storage quotas](#browser-storage-quotas)
-- Entries will never expire until you delete theme
+- Entries will never expire until you delete them
 - Deleted with "Clear browser storage" button
 - Async API
 - [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Cache)
@@ -135,11 +138,11 @@ async function getUrl(url, opts = {}) {
 
 # Origin Private File System
 
-- Full on file system
-- Not visible in the user's operating system
+- Full blown file system
+- Not easily accessible through the user's operating system
 - Scoped by origin
 - Optimized for performance
-- Can run Sqlite
+- Can run sqlite
 - Adheres to [browser storage quotas](#browser-storage-quotas)
 - **not** deleted with "Clear browser storage" button
 - Both synchronous and async APIs
@@ -163,7 +166,7 @@ for await (let [name, handle] of recipesHandle) {
 
 The following quotas apply only to the **Cache API**, **IndexedDB** and the **Origin Private File System**.
 
-- **Firefox**: 10% of disk, 50% in persistent mode
+- **Firefox**: 10% of disk, 50% in [persistent mode](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/persist)
 - **Chromium**: 50% of disk in either mode
 - **Safari**: 20% of disk, 60% if saved to Home Screen or Dock
   - no more than 80% across all origins
@@ -171,9 +174,11 @@ The following quotas apply only to the **Cache API**, **IndexedDB** and the **Or
 - [StorageManager API](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/estimate)
   - `await navigator.storage.estimate()` returns a best estimate of how much total storage is available
 
-# Sundries
+# Sundry
 
 - Incognito browsers typically delete all storage when the session ends
 - Safari uses a usage-based eviction when using cross-site tracking prevention, 7 days with no activity = all data deleted besides server-set cookies
-- Browsers use a least recently used (LRU) cache by origin to evict data when space is low
+- Browsers hold a least recently used (LRU) cache by origin and use it to evict data when space is low
 - All data for a given origin is deleted at once when evicted to avoid consistency issues
+
+Onward, to the devtools "Application" tab 🫡.
