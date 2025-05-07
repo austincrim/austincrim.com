@@ -13,25 +13,30 @@ let { frontmatter, headings } = Astro.props
 
 <Layout title={`Austin Crim | ${frontmatter.title}`} route="blog">
   <meta
-    name="description"
+    property="description"
     content={frontmatter.title + " | " + frontmatter.lede}
     slot="og"
   />
-  <meta name="og:title" content={frontmatter.title} slot="og" />
+  <meta property="og:title" content={frontmatter.title} slot="og" />
   <meta
-    name="og:image"
+    property="og:image"
     content={`https://austincrim.com/og/${frontmatter.slug}.png`}
     slot="og"
   />
   <meta
-    name="og:url"
+    property="og:url"
     content={`https://austincrim.com/${frontmatter.slug}`}
     slot="og"
   />
-  <meta name="twitter:card" content="summary_large_image" slot="og" />
+  <meta property="twitter:card" content="summary_large_image" slot="og" />
   <meta
-    name="twitter:image"
+    property="twitter:image"
     content={`https://austincrim.com/og/${frontmatter.slug}.png`}
+    slot="og"
+  />
+  <meta
+    property="og:site_name"
+    content="The personal site of Austin Crim"
     slot="og"
   />
 

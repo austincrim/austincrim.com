@@ -7,7 +7,7 @@ import path from "path"
 async function main() {
   const browser = await puppeteer.launch({
     channel: "chrome",
-    headless: true
+    headless: true,
   })
 
   let dirs = await fs.readdir("src/content/posts")
@@ -15,13 +15,13 @@ async function main() {
     dirs.map(async (slug) => {
       let url = slug.replace(".md", "")
       let page = await browser.newPage()
-      await page.setViewport({ width: 1200, height: 627 })
+      await page.setViewport({ width: 1200, height: 630 })
       await page.goto(`http://localhost:4321/og/${url}`, {
-        waitUntil: "networkidle0"
+        waitUntil: "networkidle0",
       })
       let buffer = await page.screenshot({
         type: "png",
-        clip: { x: 0, y: 0, width: 1200, height: 630 }
+        clip: { x: 0, y: 0, width: 1200, height: 630 },
       })
 
       let imagePath = path.join("public", "og", `${url}.png`)
