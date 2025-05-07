@@ -13,7 +13,7 @@ Many web apps today introduce latency, errors, and slow interactions in order to
 
 The browser can store **gigabytes** of data. <span id='your-storage'></span>
 
-Does that always relying on the network + server make sense for every part of your app? Think about the experiences you could build if your app's data was already in your browser, no latency.
+Does relying on the network + server make sense for every part of your app? Think about the experiences you could build if your app's data was already in your browser, no latency.
 
 You might be thinking, "this just sounds like another caching layer", and you would be right! Good job. It might sound difficult to manage, but come on, how hard can cache invalidation be?
 
@@ -89,13 +89,13 @@ sessionStorage.setItem("saved-message", text.value)
 
 # IndexedDB
 
-|                                      |                                                                                                                                                                                                                                                          |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Description                          | Database-like storage that supports indexes, transactions, and cursors. Adheres to browser storage quotas. Use libraries like [`idb`](https://github.com/jakearchibald/idb) or [`absurd-sql`](https://github.com/jlongster/absurd-sql) for easier usage. |
-| Limits                               | Adheres to [browser storage quotas](#browser-storage-quotas)                                                                                                                                                                                             |
-| API Type                             | Async                                                                                                                                                                                                                                                    |
-| Removed with "Clear browser storage" | Yes                                                                                                                                                                                                                                                      |
-| Documentation                        | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)                                                                                                                                                                                    |
+|                                      |                                                                                                                                                            |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                          | Database-like storage that supports indexes, transactions, and cursors. Beware of the raw API, probably use [`idb`](https://github.com/jakearchibald/idb). |
+| Limits                               | Adheres to [browser storage quotas](#browser-storage-quotas)                                                                                               |
+| API Type                             | Async                                                                                                                                                      |
+| Removed with "Clear browser storage" | Yes                                                                                                                                                        |
+| Documentation                        | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)                                                                                      |
 
 ```js
 import { openDB } from "idb"
@@ -134,7 +134,7 @@ async function getUrl(url, opts = {}) {
 
 |                                      |                                                                                                    |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------- |
-| Description                          | Full-blown file system scoped by origin. Optimized for performance and can run SQLite.             |
+| Description                          | Full-blown file system scoped by origin. Optimized for performance and can even run SQLite.        |
 | Limits                               | Adheres to [browser storage quotas](#browser-storage-quotas)                                       |
 | API Type                             | Both synchronous and async                                                                         |
 | Removed with "Clear browser storage" | No                                                                                                 |
