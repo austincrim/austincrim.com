@@ -31,9 +31,7 @@ _Thanks to Kent C. Dodds for [calling this to my attention.](https://x.com/kentc
 
 **Safari** in particular has a reputation of ditching your stored data at seemingly random intervals. This is due to their ["Intelligent Tracking Prevention"](https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/) feature. If a user hasn't interacted with a given site for seven days, Safari will automatically clear most forms of browser storage used by that site. Each user interaction will reset this clock, though, so regular users of your app shouldn't be affected.
 
-In any case, do not depend on your data being accessible 100% of the time and opt to store data that can be easily replaced.
-
-Go forth and code defensively.
+In any case, do not depend on your data being accessible 100% of the time and opt for storing data that can be easily replaced.
 
 ---
 
@@ -43,14 +41,13 @@ For the purposes of this post, I'm defining <b>storing data</b> as any means of 
 
 # Cookies
 
-- Little bits of data usually set by the server in a `Set-Cookie` header.
-- You can set cookies in the browser using the (gross) `document.cookie` API.
-- You can only access them from browser JavaScript if `HttpOnly` is not set
-- Deleted with "Clear browser storage" button
-- Synchronous API
-- 100s of cookies per domain
-- ~4kb limit per cookie
-- [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+|                                      |                                                                                                                                                                                                                       |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                          | Bits of data often set by the server in a `Set-Cookie` header. You can set cookies in the browser using the (gross) `document.cookie` API. Only accessible from browser JavaScript if `HttpOnly` property is not set. |
+| Limits                               | ~4kb per cookie, 100s of cookies per domain.                                                                                                                                                                          |
+| API Type                             | Synchronous                                                                                                                                                                                                           |
+| Removed with "Clear browser storage" | Yes                                                                                                                                                                                                                   |
+| Documentation                        | [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)                                                                                                                                                      |
 
 ```js
 document.cookie = "has_visited=true"
@@ -58,13 +55,13 @@ document.cookie = "has_visited=true"
 
 # localStorage
 
-- Key/value store
-- Keys and values must always be strings
-- Persists through closing/opening tabs
-- Deleted with "Clear browser storage" button
-- Synchronous API
-- ~5mb limit
-- [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+|                                      |                                                                                                      |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| Description                          | Key/value store where keys and values must always be strings. Persists through closing/opening tabs. |
+| Limits                               | ~5mb                                                                                                 |
+| API Type                             | Synchronous                                                                                          |
+| Removed with "Clear browser storage" | Yes                                                                                                  |
+| Documentation                        | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)                          |
 
 ```js
 localStorage.setItem(
@@ -77,11 +74,13 @@ let preferences = JSON.parse(localStorage.getItem("prefs"))
 
 # sessionStorage
 
-- Mostly the same as `localStorage` but deleted when tab/window is closed
-- Deleted with "Clear browser storage" button
-- Synchronous API
-- ~5mb limit
-- [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
+|                                      |                                                                               |
+| ------------------------------------ | ----------------------------------------------------------------------------- |
+| Description                          | Mostly the same as `localStorage` but deleted when the tab/window is closed.  |
+| Limits                               | ~5mb                                                                          |
+| API Type                             | Synchronous                                                                   |
+| Removed with "Clear browser storage" | Yes                                                                           |
+| Documentation                        | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) |
 
 ```js
 let text = document.querySelector("textarea")
@@ -90,16 +89,13 @@ sessionStorage.setItem("saved-message", text.value)
 
 # IndexedDB
 
-- Database-like storage
-- Supports indexes, transactions, cursors
-- Very cumbersome API
-- Adheres to [browser storage quotas](#browser-storage-quotas)
-- Deleted with "Clear browser storage" button
-- Async API
-- An example with the raw API would make this post too long, use a wrapper
-- [`idb`](https://github.com/jakearchibald/idb) is heavily recommended for general purpose use
-- [`absurd-sql`](https://github.com/jlongster/absurd-sql) can run sqlite backed by IndexedDB
-- [MDN](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+|                                      |                                                                                                                                                                                                                                                          |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                          | Database-like storage that supports indexes, transactions, and cursors. Adheres to browser storage quotas. Use libraries like [`idb`](https://github.com/jakearchibald/idb) or [`absurd-sql`](https://github.com/jlongster/absurd-sql) for easier usage. |
+| Limits                               | Adheres to [browser storage quotas](#browser-storage-quotas)                                                                                                                                                                                             |
+| API Type                             | Async                                                                                                                                                                                                                                                    |
+| Removed with "Clear browser storage" | Yes                                                                                                                                                                                                                                                      |
+| Documentation                        | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)                                                                                                                                                                                    |
 
 ```js
 import { openDB } from "idb"
@@ -113,15 +109,13 @@ let myNotes = await db.getAll("notes")
 
 # Cache API
 
-- Key/value store where the key is either a `Request` or a URL string and the value is a `Response`
-- Often used in service workers, but available in the main thread as well
-- Does not respect `Response` cache headers
-- Will not cache cookies
-- Adheres to [browser storage quotas](#browser-storage-quotas)
-- Entries will never expire until you delete them
-- Deleted with "Clear browser storage" button
-- Async API
-- [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Cache)
+|                                      |                                                                                                                                                                             |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                          | Key/value store where the key is either a `Request` or a URL string, and the value is a `Response`. Often used in service workers but available in the main thread as well. |
+| Limits                               | Adheres to [browser storage quotas](#browser-storage-quotas)                                                                                                                |
+| API Type                             | Async                                                                                                                                                                       |
+| Removed with "Clear browser storage" | Yes                                                                                                                                                                         |
+| Documentation                        | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Cache)                                                                                                               |
 
 ```js
 const cache = await caches.open("fetches")
@@ -138,15 +132,13 @@ async function getUrl(url, opts = {}) {
 
 # Origin Private File System
 
-- Full blown file system
-- Not easily accessible through the user's operating system
-- Scoped by origin
-- Optimized for performance
-- Can run sqlite
-- Adheres to [browser storage quotas](#browser-storage-quotas)
-- **not** deleted with "Clear browser storage" button
-- Both synchronous and async APIs
-- [MDN](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system)
+|                                      |                                                                                                    |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| Description                          | Full-blown file system scoped by origin. Optimized for performance and can run SQLite.             |
+| Limits                               | Adheres to [browser storage quotas](#browser-storage-quotas)                                       |
+| API Type                             | Both synchronous and async                                                                         |
+| Removed with "Clear browser storage" | No                                                                                                 |
+| Documentation                        | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system) |
 
 ```js
 let root = navigator.storage.getDirectory()
@@ -181,4 +173,4 @@ The following quotas apply only to the **Cache API**, **IndexedDB** and the **Or
 - Browsers hold a least recently used (LRU) cache by origin and use it to evict data when space is low
 - All data for a given origin is deleted at once when evicted to avoid consistency issues
 
-Onward, to the devtools "Application" tab 🫡.
+See you in the devtools "Application" tab 🫡
