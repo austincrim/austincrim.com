@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@utility font-merriweather {
+  font-family: "Merriweather", sans-serif;
+}
+
 h1,
 h2,
 h3,
