@@ -3,7 +3,7 @@ import { getCollection } from "astro:content"
 import Layout from "../layouts/Layout.astro"
 import ProjectCard from "../lib/ProjectCard.astro"
 
-const projects = await getCollection("projects")
+const projects = await getCollection("projects", (p) => !p.data.disabled)
 projects.sort((a, b) => a.data.order - b.data.order)
 ---
 
@@ -25,7 +25,9 @@ projects.sort((a, b) => a.data.order - b.data.order)
     Projects
   </h1>
   <div class="max-w-5xl mx-auto mt-20">
-    <ul class="flex flex-col gap-16">
+    <ul
+      class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,30ch),1fr))] gap-16"
+    >
       {
         projects.map((project) => (
           <li>

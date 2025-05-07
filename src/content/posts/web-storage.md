@@ -11,9 +11,9 @@ I think you should store data in your user's browser. Or at least consider it.
 
 Many web apps today introduce latency, errors, and slow interactions in order to pass tiny blobs of JSON back and forth from a server. These packets are usually in the 10s of kilobytes.
 
-The browser can store **gigabytes** of data.
+The browser can store **gigabytes** of data. <span id='your-storage'></span>
 
-Does that architecture make sense for all of your app's data? While reading this, think about the experiences you could build if your app's data was already in your browser.
+Does that always relying on the network + server make sense for every part of your app? Think about the experiences you could build if your app's data was already in your browser, no latency.
 
 You might be thinking, "this just sounds like another caching layer", and you would be right! Good job. It might sound difficult to manage, but come on, how hard can cache invalidation be?
 
@@ -174,3 +174,11 @@ The following quotas apply only to the **Cache API**, **IndexedDB** and the **Or
 - All data for a given origin is deleted at once when evicted to avoid consistency issues
 
 See you in the devtools "Application" tab 🫡
+
+<script type='module'>
+  let span = document.getElementById('your-storage')
+  let {quota} = await navigator.storage.estimate()
+  if (quota) {
+    span.innerHTML = `This page just ran a script and your browser is willing to store about <span class='font-bold font-mono'>${(quota / (1024 ** 3)).toFixed(0)}GB</span>, give or take. But don't take my word for it, pop open your devtools and go to 'Application -> Storage'. I'm not making this up.`
+  }
+</script>

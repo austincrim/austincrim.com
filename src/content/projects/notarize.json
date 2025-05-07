@@ -4,5 +4,6 @@
   "sourceUrl": "https://github.com/austincrim/notarize-react",
   "projectUrl": "https://notarize-react.vercel.app/",
   "type": "oss",
-  "order": 6
+  "order": 6,
+  "disabled": true
 }

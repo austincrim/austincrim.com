@@ -1,13 +1,13 @@
 import { z, defineCollection } from "astro:content"
-// Define a `type` and `schema` for each collection
+
 const postsCollection = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
     datePublished: z.date(),
     lede: z.string(),
-    draft: z.boolean()
-  })
+    draft: z.boolean(),
+  }),
 })
 const projectsCollection = defineCollection({
   type: "data",
@@ -17,11 +17,12 @@ const projectsCollection = defineCollection({
     sourceUrl: z.string().url().optional(),
     projectUrl: z.string().url().optional(),
     type: z.enum(["oss", "talk", "podcast", "guest post", "video"]),
-    order: z.number()
-  })
+    order: z.number(),
+    disabled: z.boolean().optional(),
+  }),
 })
 // Export a single `collections` object to register your collection(s)
 export const collections = {
   posts: postsCollection,
-  projects: projectsCollection
+  projects: projectsCollection,
 }
