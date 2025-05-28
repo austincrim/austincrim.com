@@ -13,7 +13,7 @@
 
 @utility ring-primary {
   outline: none;
-  @apply ring-2 ring-offset-2 dark:ring-offset-slate-800 ring-blue-500 transition;
+  @apply ring-2 dark:ring-offset-slate-800 ring-blue-500 transition;
 }
 
 h1,

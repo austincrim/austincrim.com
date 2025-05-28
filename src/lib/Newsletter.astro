@@ -23,12 +23,12 @@ let { id = "bd-form" } = Astro.props
       autocomplete="email"
       required
       id={id}
-      class="bg-slate-50 h-10 border-r border-slate-300 dark:border-slate-700 not-focus-visible:hover:bg-slate-100 w-full p-2 dark:bg-slate-800 transition-colors not-focus-visible:dark:hover:bg-slate-700 rounded-l-md focus-visible:z-10 focus:outline-none"
+      class="bg-slate-50 h-10 border border-slate-300 dark:border-slate-700 not-focus-visible:hover:bg-slate-100 w-full p-2 dark:bg-slate-800 transition-colors not-focus-visible:dark:hover:bg-slate-700 rounded-l-md focus-visible:z-10 focus:outline-none"
     />
     <div class="relative h-10 group">
       <button
         tabindex="-1"
-        class="absolute pointer-events-none px-2 py-1 [clip-path:inset(0_0_0_0)] transition-[clip-path,color] duration-150 group-hover:[clip-path:inset(0_0_100%_0)] focus-visible:[clip-path:inset(0_0_100%_0)] inset-0 border-l-0 border border-slate-50 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 rounded-r-md"
+        class="absolute text-slate-500 pointer-events-none px-2 py-1 [clip-path:inset(0_0_0_0)] transition-[clip-path,color] duration-200 group-hover:[clip-path:inset(0_0_100%_0)] focus-visible:[clip-path:inset(0_0_100%_0)] inset-0 border-l-0 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 rounded-r-md"
       >
         <span set:html={RightArrow()} />
       </button>

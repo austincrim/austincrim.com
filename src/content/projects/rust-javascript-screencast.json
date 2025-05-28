@@ -1,7 +1,0 @@
-{
-  "title": "Rust + JavaScript Screencast",
-  "description": "How to use WASM to execute Rust in your JavaScript code",
-  "projectUrl": "https://www.youtube.com/watch?v=nW71Mlbmxt8",
-  "type": "video",
-  "order": 7
-}

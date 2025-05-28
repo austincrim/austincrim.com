@@ -10,7 +10,7 @@ let { post } = Astro.props
 <article
   class="relative z-10 inline-flex items-center text-slate-900 dark:text-slate-200"
 >
-  <div class="flex flex-col grow space-y-1">
+  <div class="flex flex-col grow space-y-2">
     <div
       class="flex flex-col justify-between space-y-2 md:space-y-0 md:space-x-2 md:flex-row md:items-baseline"
     >
@@ -20,10 +20,10 @@ let { post } = Astro.props
         </h3>
       </a>
     </div>
-    <p class="max-w-3xl text-slate-700 dark:text-slate-300 leading-8 w-fit">
+    <p class="max-w-3xl text-slate-700 leading-6 dark:text-slate-300 w-fit">
       {post.data.lede}
     </p>
-    <p class="text-slate-700 dark:text-slate-300 w-fit">
+    <p class="text-slate-600 text-sm dark:text-slate-300 w-fit">
       {post.data.datePublished.toLocaleDateString()}
     </p>
   </div>
