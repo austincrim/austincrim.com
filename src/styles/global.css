@@ -5,6 +5,17 @@
   font-family: "Merriweather", sans-serif;
 }
 
+@utility hero-gradient {
+  --tw-gradient-stops: var(--color-blue-700), var(--color-indigo-300),
+    var(--color-blue-400);
+  background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+}
+
+@utility ring-primary {
+  outline: none;
+  @apply ring-2 ring-offset-2 dark:ring-offset-slate-800 ring-blue-500 transition;
+}
+
 h1,
 h2,
 h3,
@@ -15,9 +26,9 @@ h6,
   font-family: "Merriweather", sans-serif;
 }
 
-a[href]:focus-visible {
+:where(a[href], input):focus-visible {
   outline: none;
-  @apply ring-2 ring-offset-2 ring-blue-500 rounded transition;
+  @apply ring-primary;
 }
 
 .link {
@@ -45,12 +56,6 @@ a[href]:focus-visible {
     var(--color-indigo-200),
     whitesmoke
   );
-}
-
-.hero-gradient {
-  --tw-gradient-stops: var(--color-blue-700), var(--color-indigo-300),
-    var(--color-blue-400);
-  background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
 
 .fancy-gradient {

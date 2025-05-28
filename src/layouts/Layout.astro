@@ -5,6 +5,7 @@ import "../styles/global.css"
 import Nav from "../lib/Nav.astro"
 import Socials from "../lib/Socials.astro"
 import Footer from "../lib/Footer.astro"
+import Newsletter from "../lib/Newsletter.astro"
 
 const { title, route } = Astro.props
 ---
@@ -33,9 +34,7 @@ const { title, route } = Astro.props
 
   <Footer>
     <div class="flex flex-col items-center gap-6 mb-12">
-      <a class="font-medium underline" href="mailto:aust.crim@gmail.com">
-        Say Hi
-      </a>
+      <Newsletter />
       <Socials />
     </div>
   </Footer>
