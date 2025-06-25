@@ -2,7 +2,7 @@
 title: "JavaScript and the illusion of choice"
 lede: JavaScript's trademark flexibility is not what it seems
 datePublished: 2025-06-24
-draft: true
+draft: false
 ---
 
 When discussing the productivity of full-stack JavaScript vs. batteries-included frameworks like Laravel or Rails, a commonly cited strength of JavaScript is the breadth of choice in the ecosystem. You can choose the best possible tech for each part of the stack. Type in "frontend framework", "ORM", "authentication", "caching", "routing", "email", or "websockets" on npm and bask in the wealth of the JS ecosystem. No "framework lock-in", just a buffet of options waiting to be slotted perfectly into your stack on your own terms.
