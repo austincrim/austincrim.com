@@ -2,9 +2,10 @@
 import Layout from "./Layout.astro"
 import "../styles/post.css"
 import type { MarkdownHeading } from "astro"
+import type { CollectionEntry } from "astro:content"
 
 interface Props {
-  frontmatter: Record<any, any>
+  frontmatter: CollectionEntry<"posts">["data"] & { slug: string }
   headings: MarkdownHeading[]
 }
 
@@ -45,17 +46,19 @@ let { frontmatter, headings } = Astro.props
       class="gradient-container sm:rounded-xl sm:p-1 sm:mx-0 py-1 -mx-10 shadow-md"
     >
       <div
-        class="flex flex-col space-y-4 heading p-10 bg-white/60 dark:bg-slate-800/60 sm:rounded-lg text-slate-600"
+        class="flex flex-col space-y-4 heading p-10 bg-white/60 dark:bg-slate-800/90 sm:rounded-lg text-slate-600"
       >
         <h1 class="text-4xl text-balance text-slate-700 dark:text-slate-200">
           {frontmatter.title}
         </h1>
-        <span class="text-lg text-slate-700 dark:text-slate-300">
-          {frontmatter.lede}
-        </span>
-        <span class="text-slate-700 dark:text-slate-300">
-          {frontmatter.datePublished.toLocaleDateString("en-US")}
-        </span>
+        <div class="space-y-1">
+          <div class="text-lg text-slate-700 dark:text-slate-300">
+            {frontmatter.lede}
+          </div>
+          <div class="text-slate-500 dark:text-slate-400">
+            {frontmatter.datePublished.toLocaleDateString()}
+          </div>
+        </div>
       </div>
     </div>
     {
