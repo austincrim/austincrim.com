@@ -63,20 +63,18 @@ let { frontmatter, headings } = Astro.props
     </div>
     {
       headings && headings.length > 1 ? (
-        <>
-          <div class="flex flex-col -ml-4 items-start gap-4">
-            {headings.map((h) => (
-              <a
-                class="link text-xl !font-normal"
-                style={`margin-left: calc(${h.depth} * .5rem)`}
-                href={`#${h.slug}`}
-              >
-                {h.text}
-              </a>
-            ))}
-          </div>
-          <hr class="dark:border-slate-700" />
-        </>
+        <div class="flex flex-col gap-4">
+          {headings.map((h) => (
+            <a
+              class="link text-xl !font-normal"
+              style={`margin-left: calc(${h.depth} * .5rem)`}
+              href={`#${h.slug}`}
+            >
+              {h.text}
+            </a>
+          ))}
+        </div>
+        <hr class="dark:border-slate-700" />
       ) : null
     }
 
