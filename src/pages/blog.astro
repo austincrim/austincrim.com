@@ -1,10 +1,13 @@
 ---
+export const prerender = false
+
 import { getCollection } from "astro:content"
 import Layout from "../layouts/Layout.astro"
 import PostPreview from "../lib/PostPreview.astro"
 
 let showDrafts =
-  import.meta.env.DEV || Boolean(Astro.url.searchParams.get("drafts"))
+  import.meta.env.DEV ||
+  Boolean(new URL(Astro.request.url).searchParams.get("drafts"))
 
 const posts = await getCollection("posts", (e) => showDrafts || !e.data.draft)
 posts.sort(
