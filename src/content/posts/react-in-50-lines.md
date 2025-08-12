@@ -5,6 +5,8 @@ datePublished: 2025-08-05
 draft: false
 ---
 
+*[Final code and repo](#references)*
+
 # React is boring now
 
 React's current ubiquity betrays how innovative it was at the time of its release. Before React, there was mostly targeted DOM manipulation, imperatively updating pieces of the screen and keeping track of the web of connections in your head.
@@ -242,7 +244,7 @@ const React = {
 
 It's a trivially simple system yet quite effective, even the real React uses something similar. You can begin to see reasoning behind the Rules of Hooks. Calling hooks conditionally would mess with our predictable call order, which is necessary lest indices get mixed up and one `useState` call returns another's value.
 
-# Fin
+# References
 
 We've done it! In only 46 lines, we've got a declarative rendering model that supports tracking states and re-rendering the app to keep the UI up to date.
 
