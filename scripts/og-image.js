@@ -3,6 +3,7 @@
 import puppeteer from "puppeteer-core"
 import fs from "fs/promises"
 import path from "path"
+import { existsSync } from "fs"
 
 async function main() {
   const browser = await puppeteer.launch({
@@ -15,6 +16,13 @@ async function main() {
     dirs.map(async (slug) => {
       let url = slug.replace(".md", "")
       let page = await browser.newPage()
+      let imagePath = path.join("public", "og", `${url}.png`)
+
+      if (existsSync(imagePath)) {
+        console.log(`skipping ${imagePath}`)
+        return
+      }
+
       await page.setViewport({ width: 1200, height: 630 })
       await page.goto(`http://localhost:4321/og/${url}`, {
         waitUntil: "networkidle0",
@@ -24,7 +32,6 @@ async function main() {
         clip: { x: 0, y: 0, width: 1200, height: 630 },
       })
 
-      let imagePath = path.join("public", "og", `${url}.png`)
 
       if (buffer) {
         await fs.writeFile(imagePath, buffer)
