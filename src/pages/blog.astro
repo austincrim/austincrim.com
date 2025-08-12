@@ -3,10 +3,10 @@ import { getCollection } from "astro:content"
 import Layout from "../layouts/Layout.astro"
 import PostPreview from "../lib/PostPreview.astro"
 
-const posts = await getCollection(
-  "posts",
-  (e) => import.meta.env.DEV || !e.data.draft
-)
+let showDrafts =
+  import.meta.env.DEV || Boolean(Astro.url.searchParams.get("drafts"))
+
+const posts = await getCollection("posts", (e) => showDrafts || !e.data.draft)
 posts.sort(
   (a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf()
 )
