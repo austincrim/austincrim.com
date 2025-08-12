@@ -2,7 +2,7 @@
 title: "React from scratch in 50 lines"
 lede: Let's make a super basic version of React
 datePublished: 2025-08-05
-draft: true
+draft: false
 ---
 
 # React is boring now
