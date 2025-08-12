@@ -11,13 +11,15 @@ React's current ubiquity betrays how innovative it was at the time of its releas
 
 React came along and said, _"What if we just re-render everything all the time?"_. This removed entire classes of frontend problems: no more manual bookkeeping or state synchronization. It also popularized declarative rendering, the UI component model, and colocation of markup and logic.
 
-In 2025, React is a complex machine with concurrent rendering, server components, and frameworks, but let's clarify what made it special by building a tiny version of it ourselves.
+In 2025, React is a complex machine with concurrent rendering, server components, and frameworks, but we can rediscover its core principles by building a tiny version of it ourselves.
 
 # Put something on the screen
 
 Let's start building our version of the library React.
 
 <small><i>Note: I'm using the `textContent` property instead of real text nodes for simplicity's sake. Feel free to implement text nodes on your own as an exercise.</i></small>
+
+Let's start with the code to render an `App` component and then we can actually make it work.
 
 ```ts
 function App() {
@@ -27,11 +29,9 @@ function App() {
 React.render(document.getElementById("app"), App)
 ```
 
-Next, let's make this code work.
-
 The `render` method takes in a DOM element and renders our `App` component into it.
 
-Let's start by making an object to hold our module and implementing the `render` method:
+Let's make an object to hold our module and begin by implementing the `render` method:
 
 ```ts
 const React = {
@@ -48,7 +48,7 @@ function App() {
 React.render(document.getElementById("app")!, App)
 ```
 
-Next, let's implement `createElement` to build the actual DOM nodes. I'm including basic support for HTML properties and children:
+Next, let's implement `createElement` so we can build the actual DOM nodes. I'm including basic support for HTML properties and children:
 
 ```ts
 const React = {
@@ -86,7 +86,7 @@ Not too shabby, but we can do better. Let's add some state and figure out how to
 
 # `useState`
 
-Let's change our `App` component to render a classic counter:
+Let's change our `App` component to render a basic counter:
 
 ```ts
 const React = {
@@ -114,7 +114,7 @@ function App() {
 React.render(document.getElementById("app")!, App)
 ```
 
-Let's think about how `useState` works. At first glance, it is a bit odd, right? Each time our component renders, we're calling `useState` with the same arguments, but it can return different values. We need a way to "remember" the current value and update it across renders.
+With your library author hat on, think about the API of `useState`...it's actullay a bit odd, right? We call it with the same arguments every time our component renders, but it can return different state values. React encourages us to write pure components, but `useState` itself can't be pure. We need a way to "remember" its current value and update it across renders.
 
 We can accomplish this with a bit of internal state and a closure:
 
@@ -142,7 +142,7 @@ function App() {
 React.render(document.getElementById("app")!, App)
 ```
 
-There are a couple issues with this implementation, but if you add a `console.log(count)` in our `App` component, we can see the value is updating when using the counter, but the changes are not reflected on the screen.
+There are a couple issues with this implementation, but if you add a `console.log(count)` in our `setState` function, we can see the value is updating when using the counter, but the changes are not reflected on the screen.
 
 What gives?
 
@@ -240,7 +240,7 @@ const React = {
 }
 ```
 
-It's a trivially simple system yet quite effective, even the real React uses something similar. You can begin to see the genesis of the Rules of Hooks. Calling hooks conditionally would mess with our predictable call order, which is necessary lest indices get mixed up and one `useState` call could return another hook's value.
+It's a trivially simple system yet quite effective, even the real React uses something similar. You can begin to see reasoning behind the Rules of Hooks. Calling hooks conditionally would mess with our predictable call order, which is necessary lest indices get mixed up and one `useState` call returns another's value.
 
 # Fin
 
