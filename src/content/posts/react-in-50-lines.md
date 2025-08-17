@@ -116,7 +116,7 @@ function App() {
 React.render(document.getElementById("app")!, App)
 ```
 
-With your library author hat on, think about the API of `useState`...it's actullay a bit odd, right? We call it with the same arguments every time our component renders, but it can return different state values. React encourages us to write pure components, but `useState` itself can't be pure. We need a way to "remember" its current value and update it across renders.
+With your library author hat on, think about the API of `useState`...it's actually a bit odd, right? We call it with the same arguments every time our component renders, but it can return different state values. React encourages us to write pure components, but `useState` itself can't be pure. We need a way to "remember" its current value and update it across renders.
 
 We can accomplish this with a bit of internal state and a closure:
 
