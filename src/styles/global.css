@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @utility font-merriweather {
-  font-family: "Merriweather", sans-serif;
+  font-family: "Merriweather", serif;
 }
 
 @utility hero-gradient {
@@ -23,7 +23,7 @@ h4,
 h5,
 h6,
 .about {
-  font-family: "Merriweather", sans-serif;
+  font-family: "Merriweather", serif;
 }
 
 :where(a[href], input):focus-visible {

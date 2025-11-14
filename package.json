@@ -26,7 +26,6 @@
     "@astrojs/markdoc": "^0.14.2",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/vercel": "^8.2.5",
-    "@fontsource/merriweather": "^5.2.6",
     "@tailwindcss/vite": "^4.1.5",
     "markdown-it": "^14.1.0"
   },

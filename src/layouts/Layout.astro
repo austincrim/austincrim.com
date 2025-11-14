@@ -1,6 +1,4 @@
 ---
-import "@fontsource/merriweather/300.css"
-import "@fontsource/merriweather/400.css"
 import "../styles/global.css"
 import Nav from "../lib/Nav.astro"
 import Socials from "../lib/Socials.astro"
@@ -20,6 +18,10 @@ const { title, route } = Astro.props
     <meta name="view-transition" content="same-origin" />
     <slot name="og" />
     <title>{title}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
 
     {
       import.meta.env.PROD ? (
